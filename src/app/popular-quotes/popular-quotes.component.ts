@@ -5,7 +5,6 @@ import { LineOfBusiness } from '../LineOfBusiness';
 import { RecentQuote } from '../RecentQuote';
 import { ActivatedRoute, Router, RouterModule, Routes } from '@angular/router';
 
-//TODO: If quotes returned are undefined (not found with id), show first three lines of business in server.
 
 @Component({
   selector: 'app-popular-quotes',
