@@ -1,0 +1,8 @@
+<h2>Popular Lines of Business</h2>
+<div class="linesOfBusiness-menu">
+  <!--For the most popular linesOfBusiness, show their names and create a link to their details page.-->
+  <a *ngFor="let quote of quoteSortedArray"
+    routerLink="/detail/{{quote[0]}}">
+    {{quote[2]}}
+  </a>
+</div>

@@ -13,7 +13,9 @@ export class DashboardComponent implements OnInit {
   constructor(private lineOfBusinessService: LineOfBusinessService) { }
 
   ngOnInit() {
-    this.getLinesOfBusiness();
+    // Commented out to avoid another call to the server,
+    // when it is replaced by popular-quotes.components' results.
+    //this.getLinesOfBusiness();
   }
 
   getLinesOfBusiness(): void {

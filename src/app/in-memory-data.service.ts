@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { LineOfBusiness } from './LineOfBusiness';
+import { RecentQuote } from './RecentQuote';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +28,8 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 108, quoteNumber: 'AC127PC', lineOfBusiness: 15 }
     ];
 
-    return {linesOfBusiness};
+    // Return both tables to access them across the app.
+    return {linesOfBusiness, recentQuotes};
   }
 
   // Overrides the genId method to ensure that a line of business always has an id.

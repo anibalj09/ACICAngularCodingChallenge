@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { LineOfBusiness } from './LineOfBusiness';
+import { RecentQuote } from './RecentQuote';
 import { MessageService } from './message.service';
 
 
@@ -12,6 +13,7 @@ import { MessageService } from './message.service';
 export class LineOfBusinessService {
 
   private lineOfBusinessUrl = 'api/linesOfBusiness';  // URL to web api
+  private recentQuoteUrl = 'api/recentQuotes';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -66,6 +68,27 @@ export class LineOfBusinessService {
       catchError(this.handleError<LineOfBusiness[]>('searchLinesOfBusiness', []))
     );
   }
+
+
+  /** GET all quotes from the recentQuotes table. */
+  getRecentQuotes(): Observable<RecentQuote[]> {
+    return this.http.get<RecentQuote[]>(this.recentQuoteUrl)
+      .pipe(
+        tap(_ => this.log('fetched recent quotes')),
+        catchError(this.handleError<RecentQuote[]>('getRecentQuotes', []))
+      );
+  }
+
+   /** GET all quotes by id. Will 404 if id not found */
+   getLineOfBusinessQuotes(id: number): Observable<RecentQuote[]> {
+    const url = `${this.recentQuoteUrl}/?lineOfBusiness=${id}`;
+    return this.http.get<RecentQuote[]>(url)
+      .pipe(
+        tap(_ => this.log('fetched recent quotes')),
+        catchError(this.handleError<RecentQuote[]>('getRecentQuotes', []))
+      );
+  }
+
 
   //////// Save methods //////////
 
