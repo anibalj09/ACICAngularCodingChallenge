@@ -49,9 +49,9 @@ export class PopularQuotesComponent implements OnInit {
         /// GET QUOTES INTO MAP.
 
         this.recentQuotes = recentQuotes;
-        //console.log(`recentQuotes: "${this.recentQuotes}"`);
+        console.log(`recentQuotes: "${this.recentQuotes}"`);
         
-        // Save quotes into quoteMap and cout the number of times it has been quoted.
+        // Save quotes into quoteMap and count the number of times it has been quoted.
         this.recentQuotes.forEach(quote => {
           //If it is a quote not in quoteMap...
           if(quoteMap.has(quote.lineOfBusiness) == false){
@@ -63,12 +63,12 @@ export class PopularQuotesComponent implements OnInit {
             counter = quoteMap.get(quote.lineOfBusiness);
             // Add one to the counter and update the quoteMap element.
             counter += 1;
-            //console.log(`For id "${quote.lineOfBusiness}", counter is now: "${counter}"`);
+            console.log(`For id "${quote.lineOfBusiness}", counter is now: "${counter}"`);
             quoteMap.set(quote.lineOfBusiness, counter);
           }
         });
-        //console.log("quoteMap: ")
-        //console.log(quoteMap);
+        console.log("quoteMap: ")
+        console.log(quoteMap);
 
 
 
@@ -79,17 +79,17 @@ export class PopularQuotesComponent implements OnInit {
             // Save linesOfBusiness in lineOfBusinessMap.
             lineOfBusinessMap.set(lineOfBusiness.id, lineOfBusiness.name);
           }) 
-        //console.log("lineOfBusinessMap:")
-        //console.log(lineOfBusinessMap);
+        console.log("lineOfBusinessMap:")
+        console.log(lineOfBusinessMap);
         
         quoteMap.forEach((quoteValue: number, quoteID: number) => {
-          //console.log(quoteValue, quoteID);
-          //Join both lineOfBusiness and recenQuote Maps throught the lineOfBusiness key.
+          console.log(quoteValue, quoteID);
+          //Join both lineOfBusiness and recenQuote Maps through the lineOfBusiness key.
           quoteArray.push([quoteID, quoteValue, lineOfBusinessMap.get(quoteID)]);
 
         });
-        //console.log("quoteArray: ");
-        //console.log(quoteArray);
+        console.log("quoteArray: ");
+        console.log(quoteArray);
 
         // Source for sorting function: https://stackoverflow.com/a/21689268
         // Sort quoteArray in descending order and save it to the global quoteSortedArray.
@@ -106,7 +106,7 @@ export class PopularQuotesComponent implements OnInit {
         // After sorting, only get the top two linesOfBusiness to show as links in the html.
         }).splice(0,2);
 
-        //console.log(this.quoteSortedArray);
+        console.log(this.quoteSortedArray);
       
       });
     });
