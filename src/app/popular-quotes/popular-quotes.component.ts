@@ -4,7 +4,8 @@ import { LineOfBusinessService } from '../lineOfBusiness.service';
 import { LineOfBusiness } from '../LineOfBusiness';
 import { RecentQuote } from '../RecentQuote';
 import { ActivatedRoute, Router, RouterModule, Routes } from '@angular/router';
-
+import { inputQuotes } from '../mock_data/inputQuote';
+import { inputLoB } from '../mock_data/inputLineOfBusiness';
 
 @Component({
   selector: 'app-popular-quotes',
@@ -20,9 +21,14 @@ export class PopularQuotesComponent implements OnInit {
   // Array that contains the id, number of times quoted, and name of all linesOfBusiness.
   quoteSortedArray: [number, number, string][] = [];
 
+  testInputQuote = {};
+
   constructor(private lineOfBusinessService: LineOfBusinessService) { }
 
   ngOnInit() {
+    // this.testInputQuote = inputQuotes
+    // console.log("Test input data: ")
+    // console.log(this.testInputQuote)
     this.getSortedLinesOfBusiness();
   }
 
@@ -49,10 +55,12 @@ export class PopularQuotesComponent implements OnInit {
         /// GET QUOTES INTO MAP.
 
         this.recentQuotes = recentQuotes;
-        console.log(`recentQuotes: "${this.recentQuotes}"`);
+        
         
         // Save quotes into quoteMap and count the number of times it has been quoted.
         this.recentQuotes.forEach(quote => {
+          console.log('recentQuotes: ');
+          console.log(quote)
           //If it is a quote not in quoteMap...
           if(quoteMap.has(quote.lineOfBusiness) == false){
             //... save quote in quoteMap.
@@ -76,6 +84,8 @@ export class PopularQuotesComponent implements OnInit {
 
         this.linesOfBusiness = linesOfBusiness;
           this.linesOfBusiness.forEach(lineOfBusiness => {
+            console.log("lineofBusiness")
+            console.log(lineOfBusiness)
             // Save linesOfBusiness in lineOfBusinessMap.
             lineOfBusinessMap.set(lineOfBusiness.id, lineOfBusiness.name);
           }) 
