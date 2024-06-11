@@ -61,7 +61,6 @@ describe('PopularQuotesComponent', () => {
     spyOn(popularComponent, "getSortedLinesOfBusiness");
     fixture.detectChanges();
     expect(popularComponent.getSortedLinesOfBusiness).toHaveBeenCalled();
-    // component = new PopularQuotesComponent();
   })
 
   // Test to validate lineOfBusiness data received from API call.
